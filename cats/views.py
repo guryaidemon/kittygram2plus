@@ -14,13 +14,8 @@ class CatViewSet(viewsets.ModelViewSet):
     permission_classes = (OwnerOrReadOnly,)
     throttle_classes = (WorkingHoursRateThrottle, ScopedRateThrottle)
     throttle_scope = 'low_request'
-    # Указываем фильтрующий бэкенд DjangoFilterBackend
-    # Из библиотеки django-filter
     filter_backends = (DjangoFilterBackend,)
-    # Временно отключим пагинацию на уровне вьюсета,
-    # так будет удобнее настраивать фильтрацию
     pagination_class = None
-    # Фильтровать будем по полям color и birth_year модели Cat
     filterset_fields = ('color', 'birth_year')
 
     def perform_create(self, serializer):
