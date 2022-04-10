@@ -17,7 +17,7 @@ class CatViewSet(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend,)
     pagination_class = None
     filterset_fields = ('color', 'birth_year')
-    search_fields = ('name',)
+    search_fields = ('^name',)
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
